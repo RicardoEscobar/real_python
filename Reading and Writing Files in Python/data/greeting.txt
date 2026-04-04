@@ -1,0 +1,4 @@
+Hello World! Welcome to the world of programming.
+This is a simple greeting message stored in a text file.
+You can read this file using various programming languages to display the message on the screen.
+Happy coding!
