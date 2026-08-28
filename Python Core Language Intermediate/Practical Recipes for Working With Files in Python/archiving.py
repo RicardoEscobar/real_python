@@ -3,6 +3,18 @@ import tarfile
 from pathlib import Path
 
 
+def format_duration(seconds: float) -> str:
+    """Format the duration in seconds to a human-readable string."""
+    minutes, sec = divmod(seconds, 60)
+    hours, minutes = divmod(minutes, 60)
+    if hours > 0:
+        return f"{int(hours)}h {int(minutes)}m {int(sec)}s"
+    elif minutes > 0:
+        return f"{int(minutes)}m {int(sec)}s"
+    else:
+        return f"{int(sec)}s"
+
+
 # Esta es una funcion decoradora que mide el tiempo de ejecucion de la funcion que se le pasa como argumento
 def timeit(func):
     """Decorator to measure the execution time of a function."""
@@ -12,7 +24,8 @@ def timeit(func):
         start_time = time.time()
         result = func(*args, **kwargs)
         end_time = time.time()
-        print(f"Execution time: {end_time - start_time:.2f} seconds")
+        duration = end_time - start_time
+        print(f"Execution time: {format_duration(duration)}")
         return result
 
     return wrapper
